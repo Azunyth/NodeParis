@@ -5,9 +5,9 @@ var session = require('express-session');
 var mongoose = require('./config/db');
 var crypto = require('crypto');
 var hash = crypto.createHash('sha256');
+var User = require('./models/User');
 
 /*
-
 var u = {
   username: 'alexis',
   password: hash.update('test123').digest('hex')

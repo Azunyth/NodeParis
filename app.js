@@ -3,14 +3,12 @@ var fs = require('fs');
 var app = express();
 var session = require('express-session');
 var mongoose = require('./config/db');
-var crypto = require('crypto');
-var hash = crypto.createHash('sha256');
+var hash = require('./helpers/hash');
 var User = require('./models/User');
 
-/*
-var u = {
+/*var u = {
   username: 'alexis',
-  password: hash.update('test123').digest('hex')
+  password: hash('test123')
 };
 
 User(u).save(function(err, user){

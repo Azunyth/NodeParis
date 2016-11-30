@@ -1,8 +1,7 @@
 var router = require('express').Router();
 var bodyParser = require('body-parser');
 var User = require('../../models/User');
-var crypto = require('crypto');
-var hash = crypto.createHash('sha256');
+var hash = require('../../helpers/hash');
 
 var urlencoded = bodyParser.urlencoded({ extended: false });
 
@@ -14,7 +13,7 @@ router.route('/login')
     var usn = req.body.username;
     var psw = req.body.password;
 
-    User.find({username: usn, password: hash.update(psw).digest('hex').reset()})
+    User.find({username: usn, password: hash(psw)})
         .limit(1)
         .exec(function(err, users){
           if(users[0]) {
